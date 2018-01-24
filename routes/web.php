@@ -13,3 +13,12 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
+
+
+
+Route::resource('tasks', 'TasksController');
+
+Route::get('/dashboard', function(){
+    $tasks = \App\Task::get()->take(3);
+    return view('dashboard' , compact('tasks'));
+});
